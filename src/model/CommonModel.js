@@ -22,11 +22,18 @@ sequelize.authenticate().then(() => {
 // START: ok
 
 class CommonModel {
-    constructor(tableName, tableModel) {
-        const Table = sequelize.define(tableName, tableModel);
-        this.insert = function ($data) {
+    constructor(tableName, tableModel, options) {
+        const Table = sequelize.define(tableName, tableModel, Object.assign({
+            timestamps: true
+        },options));
+        this.insert = function ($data, callback) {
             Table.sync({force: false}).then(() => {
-                return Table.create($data);
+                Table.create($data).then(result => {
+                    console.log('SUCCESS:...');
+                    console.log(result);
+                }).catch(e => {
+
+                })
             });
         };
         this.update = function () {

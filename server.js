@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var expressController = require('express-controller');
+var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 
@@ -17,6 +18,9 @@ expressController
 app.set('views', path.join(__dirname, 'src/views'));
 // 设置 node.js 模板引擎
 app.set('view engine', 'ejs');
+
+// 使用 `bodyParser` 模块来获取 GET or POST 参数
+app.use(bodyParser.urlencoded({extended: false}));
 
 // 设置静态资源文件路径
 app.use(express.static('asset'));
