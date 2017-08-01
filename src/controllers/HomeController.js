@@ -3,6 +3,7 @@
  */
 let UserModel = require('../model/UserModel');
 let OrderModel = require('../model/OrderModel');
+let a =1;
 module.exports = {
   'get_index': function (req, res) {
       var user = new UserModel();
