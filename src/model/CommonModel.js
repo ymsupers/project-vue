@@ -23,22 +23,31 @@ sequelize.authenticate().then(() => {
 
 class CommonModel {
     constructor(tableName, tableModel, options) {
-        const Table = sequelize.define(tableName, tableModel, Object.assign({
-            timestamps: true
+        const Model = sequelize.define(tableName, tableModel, Object.assign({
+            timestamps: false
         },options));
-        this.insert = function ($data, callback) {
-            Table.sync({force: false}).then(() => {
-                Table.create($data).then(result => {
-                    console.log('SUCCESS:...');
-                    console.log(result);
-                }).catch(e => {
 
-                })
+        // START: 插入数据
+        this.insert = function ($data, callback) {
+            Model.sync().then(() => {
+                Model.create($data).then(result => {
+                    callback(result.id);
+                }).catch(e => {
+                    console.log('执行插入失败!错误原因:', e);
+                    callback(0);
+                });
             });
-        };
-        this.update = function () {
-            console.log('update')
-        };
+        }
+        // START: ok
+
+        // START: 单个查询数据
+        this.findOne = function ($map, callback) {
+            Model.findOne({where: $map}).then(users => {
+                callback(users);
+            });
+        }
+        // START: ok
+
     }
 }
 

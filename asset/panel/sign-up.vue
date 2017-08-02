@@ -46,7 +46,12 @@
                 }
                 // 提交表单
                 $.post('user/add', this.$data).then(result => {
-                    console.log(result);
+                    if (result.code == 200) {
+                        alert('成功创建一个账户');
+                        this.$router.push({ path: '/signIn' });
+                    } else {
+                        alert('创建失败!');
+                    }
                 });
             }
         }
