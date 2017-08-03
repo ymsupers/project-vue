@@ -44,7 +44,15 @@
                     return alert('昵称长度不够!');
                 }
                 // 提交表单
-
+                this.axios.post('user/add', this.$data).then(res => {
+                    if (res.data.code == 200 && res.data.data > 0) {
+                        alert('注册成功');
+                    } else {
+                        alert(res.data.errMsg);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
             }
         }
     }
