@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([6],{
 
 /***/ 43:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -63,10 +63,9 @@ if (false) {(function () {
 //
 //
 //
+//
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-    mounted: function () {}
-});
+/* harmony default export */ __webpack_exports__["a"] = ({});
 
 /***/ }),
 
@@ -83,7 +82,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "to": "/signUp"
     }
-  }, ["去注册"])])
+  }, ["去注册"]), " ", _h('router-link', {
+    attrs: {
+      "to": "/user"
+    }
+  }, ["用户中心"])])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _h('h1', ["Welcome use vue component."])

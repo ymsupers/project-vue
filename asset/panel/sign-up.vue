@@ -22,7 +22,6 @@
 </template>
 
 <script>
-    import $ from 'jquery';
     export default {
         data: function () {
             let $data = Object.create(null);
@@ -45,14 +44,7 @@
                     return alert('昵称长度不够!');
                 }
                 // 提交表单
-                $.post('user/add', this.$data).then(result => {
-                    if (result.code == 200) {
-                        alert('成功创建一个账户');
-                        this.$router.push({ path: '/signIn' });
-                    } else {
-                        alert('创建失败!');
-                    }
-                });
+
             }
         }
     }

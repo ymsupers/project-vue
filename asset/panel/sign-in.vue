@@ -17,23 +17,32 @@
 </template>
 
 <script>
-    import $ from 'jquery';
+    import * as types from '../../config/types';
     export default {
         data: function () {
             var data = Object.create(null);
-            data.username = '123';
-            data.password = '123';
+            data.username = '';
+            data.password = '';
             return data;
         },
         methods: {
             formSubmit: function () {
-                $.post('user/login', this.$data).then(result => {
-                    if (result.code == 200 && result.data) {
-                        alert('登录成功');
-                        this.$router.push({ path: '/home' });
-                    } else {
-                        alert(result.errMsg);
+                this.axios.post('user/login', this.$data, {
+                    'headers': {
+                        // 'Content-Type': 'application/x-www-form-urlencoded'
                     }
+                }).then(response => {
+                    console.log('响应结果:', response);
+                    var res = response.data;
+                    if (res.code == 200 && res.data) {
+                        alert('登录成功');
+                        this.$store.commit(types.LOGIN, JSON.stringify(res.data));
+                        this.$router.push({ path: '/user' });
+                    } else {
+                        alert(res.errMsg);
+                    }
+                }).catch(err => {
+                    console.log(err);
                 });
             }
         },

@@ -21,6 +21,7 @@ app.set('view engine', 'ejs');
 
 // 使用 `bodyParser` 模块来获取 GET or POST 参数
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // 设置静态资源文件路径
 app.use(express.static('asset'));
