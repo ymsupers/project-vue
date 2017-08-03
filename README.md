@@ -1,2 +1,2 @@
-# project-vue vue + express 实现登录注册功能
+# vue + express + sequelize 实现登录注册功能
 xx
